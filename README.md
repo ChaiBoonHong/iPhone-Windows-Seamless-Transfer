@@ -57,7 +57,8 @@ A simple Windows batch script that sets up a secure local SMB share for seamless
 ✓ Configures shared folder with proper permissions  
 ✓ Sets network profile to Private  
 ✓ Opens SMB firewall rules  
-✓ Restarts file-sharing services  
+- Sets the SMB server service to start automatically on boot
+- Restarts file-sharing services
 ✓ Generates connection details file  
 
 ---

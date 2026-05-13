@@ -81,7 +81,11 @@ if errorlevel 1 (
 netsh advfirewall firewall set rule group="File and Printer Sharing" new enable=Yes >nul 2>&1
 netsh advfirewall firewall add rule name="Force iOS SMB In (TCP 445)" dir=in action=allow protocol=TCP localport=445 >nul 2>&1
 
-echo --- Step 5: Restarting Windows File Sharing Service ---
+echo --- Step 5: Ensuring Windows File Sharing Service Starts Automatically ---
+sc config LanmanServer start= auto >nul 2>&1
+if errorlevel 1 (
+    echo [WARN] Could not set Windows File Sharing service to automatic start.
+)
 net stop LanmanServer /y >nul 2>&1
 net start LanmanServer >nul 2>&1
 if errorlevel 1 (
